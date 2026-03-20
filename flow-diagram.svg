@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f5f7fb"/>
+  <text x="40" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#22304a">Smart Campus MQTT Flow (Illustrative)</text>
+  <rect x="40" y="100" width="180" height="70" rx="12" fill="#d7ecff" stroke="#4c89c7"/>
+  <text x="68" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1d3557">Inject Temp</text>
+  <rect x="260" y="100" width="220" height="70" rx="12" fill="#fff1cc" stroke="#c9a227"/>
+  <text x="302" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5a4300">Build Temp JSON</text>
+  <rect x="520" y="100" width="220" height="70" rx="12" fill="#ffe0d9" stroke="#d97757"/>
+  <text x="575" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5f270f">MQTT Out</text>
+  <text x="556" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#5f270f">campus/blockA/temperature</text>
+  <rect x="40" y="230" width="180" height="70" rx="12" fill="#d7ecff" stroke="#4c89c7"/>
+  <text x="55" y="273" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1d3557">Inject Humidity</text>
+  <rect x="260" y="230" width="220" height="70" rx="12" fill="#fff1cc" stroke="#c9a227"/>
+  <text x="288" y="273" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5a4300">Build Humidity JSON</text>
+  <rect x="520" y="230" width="220" height="70" rx="12" fill="#ffe0d9" stroke="#d97757"/>
+  <text x="575" y="273" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5f270f">MQTT Out</text>
+  <text x="572" y="295" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#5f270f">campus/blockB/humidity</text>
+  <rect x="40" y="360" width="180" height="70" rx="12" fill="#d7ecff" stroke="#4c89c7"/>
+  <text x="58" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1d3557">Inject Status</text>
+  <rect x="260" y="360" width="220" height="70" rx="12" fill="#fff1cc" stroke="#c9a227"/>
+  <text x="300" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5a4300">Build Status JSON</text>
+  <rect x="520" y="360" width="220" height="70" rx="12" fill="#ffe0d9" stroke="#d97757"/>
+  <text x="575" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5f270f">MQTT Out</text>
+  <text x="585" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#5f270f">campus/+/status</text>
+  <rect x="850" y="140" width="220" height="70" rx="12" fill="#e4ffd9" stroke="#51a351"/>
+  <text x="906" y="183" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#234d20">MQTT In</text>
+  <text x="858" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#234d20">campus/blockA/temperature</text>
+  <rect x="850" y="250" width="220" height="70" rx="12" fill="#e4ffd9" stroke="#51a351"/>
+  <text x="906" y="293" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#234d20">MQTT In</text>
+  <text x="873" y="315" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#234d20">campus/blockB/humidity</text>
+  <rect x="850" y="360" width="220" height="70" rx="12" fill="#e4ffd9" stroke="#51a351"/>
+  <text x="892" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#234d20">Wildcard In</text>
+  <text x="895" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#234d20">campus/+/status</text>
+  <rect x="1090" y="220" width="150" height="120" rx="12" fill="#f0e6ff" stroke="#8a63d2"/>
+  <text x="1137" y="260" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#452c7a">Dashboard</text>
+  <text x="1113" y="290" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#452c7a">Gauges</text>
+  <text x="1119" y="315" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#452c7a">Charts</text>
+  <path d="M220 135 L260 135" stroke="#506070" stroke-width="4"/>
+  <path d="M480 135 L520 135" stroke="#506070" stroke-width="4"/>
+  <path d="M220 265 L260 265" stroke="#506070" stroke-width="4"/>
+  <path d="M480 265 L520 265" stroke="#506070" stroke-width="4"/>
+  <path d="M220 395 L260 395" stroke="#506070" stroke-width="4"/>
+  <path d="M480 395 L520 395" stroke="#506070" stroke-width="4"/>
+  <path d="M740 135 L850 175" stroke="#506070" stroke-width="4"/>
+  <path d="M740 265 L850 285" stroke="#506070" stroke-width="4"/>
+  <path d="M740 395 L850 395" stroke="#506070" stroke-width="4"/>
+  <path d="M1070 175 L1090 240" stroke="#506070" stroke-width="4"/>
+  <path d="M1070 285 L1090 280" stroke="#506070" stroke-width="4"/>
+  <path d="M1070 395 L1090 320" stroke="#506070" stroke-width="4"/>
+</svg>

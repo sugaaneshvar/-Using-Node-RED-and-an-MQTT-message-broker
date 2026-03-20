@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#eef4f8"/>
+  <text x="40" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#22304a">Smart Campus Dashboard (Illustrative)</text>
+  <rect x="40" y="100" width="360" height="250" rx="18" fill="#ffffff" stroke="#c6d4e1"/>
+  <text x="70" y="145" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#22304a">Temperature</text>
+  <circle cx="220" cy="240" r="95" fill="none" stroke="#e7edf3" stroke-width="24"/>
+  <path d="M145 285 A95 95 0 0 1 295 210" fill="none" stroke="#ff8f5a" stroke-width="24" stroke-linecap="round"/>
+  <text x="195" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#22304a">28C</text>
+  <rect x="440" y="100" width="360" height="250" rx="18" fill="#ffffff" stroke="#c6d4e1"/>
+  <text x="470" y="145" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#22304a">Humidity</text>
+  <circle cx="620" cy="240" r="95" fill="none" stroke="#e7edf3" stroke-width="24"/>
+  <path d="M545 300 A95 95 0 0 1 695 185" fill="none" stroke="#3ba4ff" stroke-width="24" stroke-linecap="round"/>
+  <text x="592" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#22304a">59%</text>
+  <rect x="840" y="100" width="390" height="250" rx="18" fill="#ffffff" stroke="#c6d4e1"/>
+  <text x="870" y="145" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#22304a">Device Status</text>
+  <rect x="880" y="185" width="300" height="55" rx="12" fill="#e8fff1" stroke="#78c79b"/>
+  <text x="910" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#25543a">Block A Sensor: online</text>
+  <rect x="880" y="260" width="300" height="55" rx="12" fill="#e8fff1" stroke="#78c79b"/>
+  <text x="910" y="295" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#25543a">Block B Sensor: online</text>
+  <rect x="40" y="390" width="560" height="270" rx="18" fill="#ffffff" stroke="#c6d4e1"/>
+  <text x="70" y="435" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#22304a">Temperature Trend</text>
+  <polyline points="90,590 170,560 250,575 330,515 410,540 490,500 560,470" fill="none" stroke="#ff8f5a" stroke-width="5"/>
+  <rect x="640" y="390" width="590" height="270" rx="18" fill="#ffffff" stroke="#c6d4e1"/>
+  <text x="670" y="435" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#22304a">Humidity Trend</text>
+  <polyline points="690,540 770,510 850,530 930,500 1010,470 1090,490 1170,455" fill="none" stroke="#3ba4ff" stroke-width="5"/>
+</svg>

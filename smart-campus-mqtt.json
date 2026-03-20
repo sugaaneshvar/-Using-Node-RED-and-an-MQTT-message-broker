@@ -1,0 +1,656 @@
+[
+  {
+    "id": "f1a1b1c1d1e1f1a1",
+    "type": "tab",
+    "label": "Smart Campus MQTT Lab",
+    "disabled": false,
+    "info": "Publish-subscribe lab with two publishers, wildcard subscriber, and dashboard."
+  },
+  {
+    "id": "b1",
+    "type": "mqtt-broker",
+    "name": "Local Mosquitto",
+    "broker": "127.0.0.1",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ui_tab_1",
+    "type": "ui_tab",
+    "name": "Campus Dashboard",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "ui_group_1",
+    "type": "ui_group",
+    "name": "Live Metrics",
+    "tab": "ui_tab_1",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "inj_temp",
+    "type": "inject",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Temperature every 5s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 80,
+    "wires": [
+      [
+        "fn_temp"
+      ]
+    ]
+  },
+  {
+    "id": "fn_temp",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Build temperature JSON",
+    "func": "const value = 24 + Math.floor(Math.random() * 7);\nmsg.topic = \"campus/blockA/temperature\";\nmsg.payload = {\n    sensor: \"temperature\",\n    location: \"Block A\",\n    value,\n    unit: \"C\",\n    ts: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 80,
+    "wires": [
+      [
+        "mqtt_out_temp"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_temp",
+    "type": "mqtt out",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Publish temperature QoS1",
+    "topic": "",
+    "qos": "1",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "b1",
+    "x": 680,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "inj_hum",
+    "type": "inject",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Humidity every 7s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "7",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1.5",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 160,
+    "wires": [
+      [
+        "fn_hum"
+      ]
+    ]
+  },
+  {
+    "id": "fn_hum",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Build humidity JSON",
+    "func": "const value = 55 + Math.floor(Math.random() * 11);\nmsg.topic = \"campus/blockB/humidity\";\nmsg.payload = {\n    sensor: \"humidity\",\n    location: \"Block B\",\n    value,\n    unit: \"%\",\n    ts: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 160,
+    "wires": [
+      [
+        "mqtt_out_hum"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_hum",
+    "type": "mqtt out",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Publish humidity QoS2",
+    "topic": "",
+    "qos": "2",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "b1",
+    "x": 680,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "inj_status_a",
+    "type": "inject",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Block A status every 15s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "15",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "2",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 260,
+    "wires": [
+      [
+        "fn_status_a"
+      ]
+    ]
+  },
+  {
+    "id": "fn_status_a",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Build Block A status",
+    "func": "msg.topic = \"campus/blockA/status\";\nmsg.payload = {\n    device: \"Block A Sensor\",\n    status: \"online\",\n    ts: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 260,
+    "wires": [
+      [
+        "mqtt_out_status_a"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_status_a",
+    "type": "mqtt out",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Publish Block A status retained",
+    "topic": "",
+    "qos": "1",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "b1",
+    "x": 700,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "inj_status_b",
+    "type": "inject",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Block B status every 15s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "15",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "2.5",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 320,
+    "wires": [
+      [
+        "fn_status_b"
+      ]
+    ]
+  },
+  {
+    "id": "fn_status_b",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Build Block B status",
+    "func": "msg.topic = \"campus/blockB/status\";\nmsg.payload = {\n    device: \"Block B Sensor\",\n    status: \"online\",\n    ts: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 320,
+    "wires": [
+      [
+        "mqtt_out_status_b"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_status_b",
+    "type": "mqtt out",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Publish Block B status retained",
+    "topic": "",
+    "qos": "1",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "b1",
+    "x": 700,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "mqtt_in_temp",
+    "type": "mqtt in",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Subscribe temperature",
+    "topic": "campus/blockA/temperature",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "b1",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 440,
+    "wires": [
+      [
+        "dbg_temp",
+        "fn_temp_dashboard"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_in_hum",
+    "type": "mqtt in",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Subscribe humidity",
+    "topic": "campus/blockB/humidity",
+    "qos": "2",
+    "datatype": "json",
+    "broker": "b1",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 150,
+    "y": 520,
+    "wires": [
+      [
+        "dbg_hum",
+        "fn_hum_dashboard"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_in_status",
+    "type": "mqtt in",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Wildcard status subscriber",
+    "topic": "campus/+/status",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "b1",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 180,
+    "y": 600,
+    "wires": [
+      [
+        "dbg_status",
+        "fn_status_dashboard"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_temp",
+    "type": "debug",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Temp Log",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 430,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "dbg_hum",
+    "type": "debug",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Humidity Log",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 440,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "dbg_status",
+    "type": "debug",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Status Log",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 430,
+    "y": 580,
+    "wires": []
+  },
+  {
+    "id": "fn_temp_dashboard",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Temperature to dashboard",
+    "func": "msg.payload = Number(msg.payload.value);\nreturn [msg, msg];",
+    "outputs": 2,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 460,
+    "wires": [
+      [
+        "ui_gauge_temp"
+      ],
+      [
+        "ui_chart_temp"
+      ]
+    ]
+  },
+  {
+    "id": "fn_hum_dashboard",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Humidity to dashboard",
+    "func": "msg.payload = Number(msg.payload.value);\nreturn [msg, msg];",
+    "outputs": 2,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 540,
+    "wires": [
+      [
+        "ui_gauge_hum"
+      ],
+      [
+        "ui_chart_hum"
+      ]
+    ]
+  },
+  {
+    "id": "fn_status_dashboard",
+    "type": "function",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Route status to text",
+    "func": "msg.payload = msg.payload.device + ': ' + msg.payload.status;\nif (msg.topic === 'campus/blockA/status') {\n    return [msg, null];\n}\nreturn [null, msg];",
+    "outputs": 2,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 620,
+    "wires": [
+      [
+        "ui_text_status_a"
+      ],
+      [
+        "ui_text_status_b"
+      ]
+    ]
+  },
+  {
+    "id": "ui_gauge_temp",
+    "type": "ui_gauge",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Temperature Gauge",
+    "group": "ui_group_1",
+    "order": 1,
+    "width": 6,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Block A Temperature",
+    "label": "C",
+    "format": "{{value}}",
+    "min": 0,
+    "max": "50",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "20",
+    "seg2": "35",
+    "className": "",
+    "x": 760,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "ui_chart_temp",
+    "type": "ui_chart",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Temperature Chart",
+    "group": "ui_group_1",
+    "order": 2,
+    "width": 6,
+    "height": 4,
+    "label": "Temperature Trend",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "0",
+    "ymax": "50",
+    "removeOlder": "1",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "3600",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#ff8f5a",
+      "#aec7e8",
+      "#98df8a",
+      "#ff9896",
+      "#c5b0d5",
+      "#c49c94",
+      "#f7b6d2",
+      "#dbdb8d",
+      "#9edae5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "className": "",
+    "x": 760,
+    "y": 480,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_hum",
+    "type": "ui_gauge",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Humidity Gauge",
+    "group": "ui_group_1",
+    "order": 3,
+    "width": 6,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Block B Humidity",
+    "label": "%",
+    "format": "{{value}}",
+    "min": 0,
+    "max": "100",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "40",
+    "seg2": "75",
+    "className": "",
+    "x": 750,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "ui_chart_hum",
+    "type": "ui_chart",
+    "z": "f1a1b1c1d1e1f1a1",
+    "name": "Humidity Chart",
+    "group": "ui_group_1",
+    "order": 4,
+    "width": 6,
+    "height": 4,
+    "label": "Humidity Trend",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "0",
+    "ymax": "100",
+    "removeOlder": "1",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "3600",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#3ba4ff",
+      "#aec7e8",
+      "#98df8a",
+      "#ff9896",
+      "#c5b0d5",
+      "#c49c94",
+      "#f7b6d2",
+      "#dbdb8d",
+      "#9edae5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "className": "",
+    "x": 750,
+    "y": 580,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_text_status_a",
+    "type": "ui_text",
+    "z": "f1a1b1c1d1e1f1a1",
+    "group": "ui_group_1",
+    "order": 5,
+    "width": 6,
+    "height": 1,
+    "name": "Block A Status",
+    "label": "Block A Status",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 750,
+    "y": 620,
+    "wires": []
+  },
+  {
+    "id": "ui_text_status_b",
+    "type": "ui_text",
+    "z": "f1a1b1c1d1e1f1a1",
+    "group": "ui_group_1",
+    "order": 6,
+    "width": 6,
+    "height": 1,
+    "name": "Block B Status",
+    "label": "Block B Status",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 750,
+    "y": 660,
+    "wires": []
+  }
+]
