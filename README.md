@@ -77,15 +77,23 @@ Example topics shown in the log:
 
 ## Screenshots
 
-Replace the following placeholders with your actual screenshots after running the flow in Node-RED.
+Save your screenshots in the `assets` folder with the following names so they appear correctly in the report:
 
-### Flow Screenshot Placeholder
+- `flow-screenshot.png`
+- `dashboard-temperature.png`
+- `dashboard-humidity-status.png`
 
-![Flow diagram](/C:/Users/19138/Downloads/Distributed%20system/assets/flow-diagram.svg)
+### Final Node-RED Flow
 
-### Dashboard Screenshot Placeholder
+![Node-RED Flow](assets/flow-screenshot.png)
 
-![Dashboard mockup](/C:/Users/19138/Downloads/Distributed%20system/assets/dashboard-mockup.svg)
+### Dashboard Temperature View
+
+![Dashboard Temperature](assets/dashboard-temperature.png)
+
+### Dashboard Humidity and Status View
+
+![Dashboard Humidity and Status](assets/dashboard-humidity-status.png)
 
 ## Video Demonstration Talking Points
 
@@ -108,4 +116,4 @@ Replace the following placeholders with your actual screenshots after running th
 
 ## Conclusion
 
-The experiment successfully demonstrates an MQTT-based publish-subscribe system with multiple publishers, a wildcard subscriber, and a live dashbo
+The experiment successfully demonstrates an MQTT-based publish-subscribe system with multiple publishers, a wildcard subscriber, and a live dashboard using Node-RED.
