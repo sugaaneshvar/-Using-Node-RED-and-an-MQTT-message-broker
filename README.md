@@ -77,23 +77,17 @@ Example topics shown in the log:
 
 ## Screenshots
 
-Save your screenshots in the `assets` folder with the following names so they appear correctly in the report:
-
-- `flow-screenshot.png`
-- `dashboard-temperature.png`
-- `dashboard-humidity-status.png`
-
 ### Final Node-RED Flow
 
-![Node-RED Flow](assets/flow-screenshot.png)
+![Node-RED Flow](/C:/Users/19138/Pictures/Screenshots/Screenshot%202026-03-20%20001708.png)
 
 ### Dashboard Temperature View
 
-![Dashboard Temperature](assets/dashboard-temperature.png)
+Add your dashboard temperature screenshot here after saving it.
 
 ### Dashboard Humidity and Status View
 
-![Dashboard Humidity and Status](assets/dashboard-humidity-status.png)
+Add your dashboard humidity and status screenshot here after saving it.
 
 ## Video Demonstration Talking Points
 
