@@ -1,118 +1,111 @@
-# Lab DA-2: Publish-Subscribe System with MQTT Message Broker
+# Lab DA-2 Report
 
-This repository contains a complete MQTT publish-subscribe lab setup using:
+## Title
 
-- Node-RED for publishers, subscribers, and dashboard
-- Eclipse Mosquitto as the MQTT message broker
-- A Smart Campus Monitoring use case
+Publish-Subscribe System with MQTT Broker using Node-RED
 
-## System Overview
+## Student Details
 
-The system models two campus sensor publishers:
+| Field | Value |
+| --- | --- |
+| Student Name | Suganeshvar |
+| Register Number | 21MID0128 |
+| Done By | 21MID0128 Suganeshvar |
+
+## Use Case
+
+This project implements a Smart Campus Monitoring system using the MQTT publish-subscribe model. Two publishers simulate IoT sensors deployed in different campus blocks:
+
+- Block A temperature sensor
+- Block B humidity sensor
+
+The MQTT broker forwards messages to subscribers based on topic names. A wildcard subscriber is used for device status topics, and a live dashboard shows the current sensor values.
+
+## Topics Used
 
 - `campus/blockA/temperature`
 - `campus/blockB/humidity`
+- `campus/blockA/status`
+- `campus/blockB/status`
 
-It also publishes retained device status messages on:
+Wildcard subscription:
+
+- `campus/+/status`
+
+## Publisher and Subscriber Roles
+
+- The temperature publisher sends temperature readings to `campus/blockA/temperature`.
+- The humidity publisher sends humidity readings to `campus/blockB/humidity`.
+- Two status publishers send `online` messages to their status topics.
+- Subscribers receive messages from the broker without directly communicating with publishers.
+- The wildcard subscriber receives status messages from both blocks using one subscription pattern.
+
+## QoS Demonstration
+
+- Temperature messages use QoS 1, which provides at-least-once delivery.
+- Humidity messages use QoS 2, which provides exactly-once delivery.
+- This shows that the broker can route messages with different delivery guarantees.
+
+## Retained Messages
+
+Retained messages are used only for the status topics. This ensures that when a new subscriber connects, it immediately receives the latest `online` status message, even if that message was published before the subscriber connected.
+
+QoS controls delivery guarantee, while retained messages control whether the latest broker-stored message is sent to future subscribers.
+
+## Wildcard Explanation
+
+The wildcard subscriber uses:
+
+`campus/+/status`
+
+The `+` wildcard matches exactly one topic level, so it matches:
 
 - `campus/blockA/status`
 - `campus/blockB/status`
 
-The wildcard subscriber listens to:
+This allows one subscriber to monitor status updates from multiple campus blocks.
 
-- `campus/+/status`
+## Short Log
 
-The dashboard visualizes live temperature, humidity, and device status.
+See [logs/sample-mqtt-log.txt](/C:/Users/19138/Downloads/Distributed%20system/logs/sample-mqtt-log.txt).
 
-## Repository Structure
+Example topics shown in the log:
 
-- `flows/smart-campus-mqtt.json` - importable Node-RED flow
-- `logs/sample-mqtt-log.txt` - sample message log for submission
-- `report.md` - markdown report for PDF export
-- `docker-compose.yml` - local Mosquitto broker setup
-- `mosquitto/mosquitto.conf` - broker configuration
-- `assets/flow-diagram.svg` - illustrative flow diagram
-- `assets/dashboard-mockup.svg` - illustrative dashboard mockup
+- `campus/blockA/temperature`
+- `campus/blockB/humidity`
+- `campus/blockA/status`
 
-## Prerequisites
+## Screenshots
 
-- Node.js
-- Node-RED
-- Docker Desktop
+Replace the following placeholders with your actual screenshots after running the flow in Node-RED.
 
-Node-RED dashboard package:
+### Flow Screenshot Placeholder
 
-```powershell
-npm install -g node-red
-cd $env:USERPROFILE\.node-red
-npm install node-red-dashboard
-```
+![Flow diagram](/C:/Users/19138/Downloads/Distributed%20system/assets/flow-diagram.svg)
 
-## Run the MQTT Broker
+### Dashboard Screenshot Placeholder
 
-From this repository:
+![Dashboard mockup](/C:/Users/19138/Downloads/Distributed%20system/assets/dashboard-mockup.svg)
 
-```powershell
-docker compose up -d
-```
+## Video Demonstration Talking Points
 
-This starts Mosquitto on `localhost:1883`.
+### 1. Pub/Sub roles in the flow
 
-## Run Node-RED
+- Publishers send data to the broker on specific topics.
+- Subscribers receive data from the broker by subscribing to topics.
+- The broker decouples senders from receivers.
 
-Start Node-RED:
+### 2. How wildcards worked
 
-```powershell
-node-red
-```
+- The wildcard subscriber used `campus/+/status`.
+- One subscriber listened to both Block A and Block B status topics.
 
-Then open:
+### 3. QoS vs retained messages
 
-- Editor: [http://127.0.0.1:1880](http://127.0.0.1:1880)
-- Dashboard: [http://127.0.0.1:1880/ui](http://127.0.0.1:1880/ui)
+- QoS defines delivery guarantee between publisher, broker, and subscriber.
+- Retained messages store the latest topic value in the broker.
+- In this system, QoS 1 and QoS 2 were used for sensor data, while retained messages were used for status.
 
-## Import the Flow
+## Conclusion
 
-1. Open the Node-RED editor.
-2. Click the menu in the top-right.
-3. Choose `Import`.
-4. Open `flows/smart-campus-mqtt.json`.
-5. Click `Import`, then `Deploy`.
-
-## What the Flow Demonstrates
-
-### Publishers
-
-- Publisher 1 sends temperature data every 5 seconds with QoS 1.
-- Publisher 2 sends humidity data every 7 seconds with QoS 2.
-- Two status publishers send retained `online` messages for each block.
-
-### Subscribers
-
-- Dedicated subscribers listen to temperature and humidity topics.
-- A wildcard subscriber listens to `campus/+/status`.
-
-### Dashboard
-
-- Temperature gauge and chart
-- Humidity gauge and chart
-- Text widgets for Block A and Block B status
-
-## QoS and Retained Messages
-
-- QoS 1 is used for temperature data to show at-least-once delivery.
-- QoS 2 is used for humidity data to show exactly-once delivery.
-- Retained messages are used on status topics so new subscribers immediately receive the latest online state.
-
-## Submission Notes
-
-Before final submission, capture:
-
-1. A real screenshot of the imported Node-RED flow
-2. A real screenshot of the dashboard while messages are updating
-3. A short terminal/debug log showing:
-   - `campus/blockA/temperature`
-   - `campus/blockB/humidity`
-   - `campus/blockA/status` or `campus/blockB/status`
-
-You can use `report.md` as the source for your PDF submission in VTOP.
+The experiment successfully demonstrates an MQTT-based publish-subscribe system with multiple publishers, a wildcard subscriber, and a live dashbo
